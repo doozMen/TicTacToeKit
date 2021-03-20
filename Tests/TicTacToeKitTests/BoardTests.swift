@@ -147,6 +147,7 @@ final class BoardTests: XCTestCase {
                 try makeAWinningRow(in: board, section: section, candidate: candidate)
                 
                 XCTAssertEqual(board.winner, candidate)
+                XCTAssertEqual(board.winningSquares.map { $0.id }, [0, 1, 2])
                 board.resetGame()
             }
         }

@@ -9,6 +9,8 @@ public final class Board: ObservableObject {
     public private(set) var isStarted: Bool
     @Published
     public private(set) var winner: Square.OccupiedBy
+    @Published
+    public private(set) var winningSquares: [Square]
     
     public let squares: [[Square]]
     let flatSquares: [Square]
@@ -37,6 +39,7 @@ public final class Board: ObservableObject {
         self.isStarted = false
         self.winner = .nobody
         self.flatSquares = squares.flatMap { $0 }
+        self.winningSquares = []
     }
     
     /// Allows to play against AI

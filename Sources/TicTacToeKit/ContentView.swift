@@ -15,6 +15,8 @@ public struct ContentView: View {
                 Text(boardViewModel.winnerName)
                     .font(.title)
                     .padding()
+                    .accessibility(identifier: "Game Status Text")
+                    .accessibility(label: Text(boardViewModel.winnerName))
                 Spacer()
                 Button("Reset") {
                     boardViewModel.board.resetGame()
