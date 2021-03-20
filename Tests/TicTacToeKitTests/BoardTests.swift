@@ -14,6 +14,10 @@ final class BoardTests: XCTestCase {
         super.tearDown()
     }
     
+    func test_squard_valid_ids() {
+        XCTAssertEqual(board.flatSquares.map { $0.id }, [ ])
+    }
+    
     func test_board_initial_nobody_on_any_square() {
         XCTAssertFalse(board.isStarted)
     }
