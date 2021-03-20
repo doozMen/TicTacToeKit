@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SharedPackage"
-               BuildableName = "SharedPackage"
-               BlueprintName = "SharedPackage"
+               BlueprintIdentifier = "TicTacToeKit"
+               BuildableName = "TicTacToeKit"
+               BlueprintName = "TicTacToeKit"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SharedPackageTests"
-               BuildableName = "SharedPackageTests"
-               BlueprintName = "SharedPackageTests"
+               BlueprintIdentifier = "TicTacToeKitTests"
+               BuildableName = "TicTacToeKitTests"
+               BlueprintName = "TicTacToeKitTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -60,9 +60,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "SharedPackage"
-            BuildableName = "SharedPackage"
-            BlueprintName = "SharedPackage"
+            BlueprintIdentifier = "TicTacToeKit"
+            BuildableName = "TicTacToeKit"
+            BlueprintName = "TicTacToeKit"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>
