@@ -15,7 +15,7 @@ final class BoardTests: XCTestCase {
     }
     
     func test_squard_valid_ids() {
-        XCTAssertEqual(board.flatSquares.map { $0.id }, [ ])
+        XCTAssertEqual(board.flatSquares.map { $0.id }, [0, 1, 2, 3, 4, 5, 6, 7, 8])
     }
     
     func test_board_initial_nobody_on_any_square() {
