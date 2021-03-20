@@ -29,15 +29,17 @@ public struct SquareView: View {
             ).onReceive(square.$color, perform: { color in
                 self.color = color
             })
+            .accessibilityIdentifier(square.accesibilityIdentifier)
+            .accessibility(label: Text(square.accesibilityLabelText))
     }
 }
 
 struct SquareView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            SquareView(square: .init(.home), action: { print("home pressed")})
-            SquareView(square: .init(.nobody), action: { print("nobody pressed")})
-            SquareView(square: .init(.visitor), action: { print("visitor pressed")})
+            SquareView(square: .init(.home, id: 1), action: { print("home pressed")})
+            SquareView(square: .init(.nobody, id: 2), action: { print("nobody pressed")})
+            SquareView(square: .init(.visitor, id: 3), action: { print("visitor pressed")})
         }
     }
 }
