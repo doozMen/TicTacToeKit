@@ -5,6 +5,7 @@ import Combine
 public struct SquareView: View {
     let square: Square
     @State var color = Color.gray
+    @State var scale: CGFloat = 1
     
     let action: () -> Void
     
@@ -29,8 +30,17 @@ public struct SquareView: View {
             ).onReceive(square.$color, perform: { color in
                 self.color = color
             })
+            .onReceive(square.$isWinner, perform: { isWinner in
+                guard isWinner else {
+                    self.scale = 1
+                    return
+                }
+                self.scale = 1.5
+            })
             .accessibilityIdentifier(square.accesibilityIdentifier)
             .accessibility(label: Text(square.accesibilityLabelText))
+            .scaleEffect(scale)
+            .animation(.spring())
     }
 }
 
