@@ -6,7 +6,12 @@ class SquareTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        square = .init(.nobody)
+        square = .init(.nobody, id: 0)
+    }
+    
+    func test_square_accessibility() {
+        XCTAssertEqual(square.accesibilityIdentifier, "")
+        XCTAssertEqual(square.accesibilityLabelText, "")
     }
     
     func test_init() {
