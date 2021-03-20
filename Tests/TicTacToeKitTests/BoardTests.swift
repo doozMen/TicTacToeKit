@@ -143,14 +143,20 @@ final class BoardTests: XCTestCase {
         let candidates: [Square.OccupiedBy] = [.home, .visitor]
 
         for candidate in candidates {
-            for section in 0..<3 {
-                try makeAWinningRow(in: board, section: section, candidate: candidate)
-                
+            for row in 0..<3 {
+                try makeAWinningRow(in: board, row: row, candidate: candidate)
+
                 XCTAssertEqual(board.winner, candidate)
-                XCTAssertEqual(board.winningSquares.map { $0.id }, [0, 1, 2])
                 board.resetGame()
             }
         }
+    }
+    
+    func test_square_marked_as_winner() throws {
+        try makeAWinningRow(in: board, row: 0, candidate: .home)
+        
+        XCTAssertEqual(board.winner, .home)
+        XCTAssertEqual(board.flatSquares.map { $0.isWinner }, [true, true, true, false, false, false, false, false, false])
     }
     
     func test_check_winner_columns() throws {
@@ -193,8 +199,8 @@ final class BoardTests: XCTestCase {
     }
 }
 
-func makeAWinningRow(in board: Board, section: Int, candidate: Square.OccupiedBy) throws {
-    try board.occupy(at: .init(item: 0, section: section), with: candidate)
-    try board.occupy(at: .init(item: 1, section: section), with: candidate)
-    try board.occupy(at: .init(item: 2, section: section), with: candidate)
+func makeAWinningRow(in board: Board, row: Int, candidate: Square.OccupiedBy) throws {
+    try board.occupy(at: .init(item: 0, section: row), with: candidate)
+    try board.occupy(at: .init(item: 1, section: row), with: candidate)
+    try board.occupy(at: .init(item: 2, section: row), with: candidate)
 }

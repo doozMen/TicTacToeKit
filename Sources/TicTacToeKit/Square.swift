@@ -8,7 +8,10 @@ public final class Square: Equatable, CustomStringConvertible, ObservableObject 
     
     let id: Int
     lazy var accesibilityIdentifier = "\(Square.self)-\(id)"
-    @Published var accesibilityLabelText: String
+    @Published
+    var accesibilityLabelText: String
+    @Published
+    var isWinner: Bool
     
     @Published
     var occupiedBy: OccupiedBy {
@@ -41,6 +44,7 @@ public final class Square: Equatable, CustomStringConvertible, ObservableObject 
         self.color = .gray
         self.id = id
         self.accesibilityLabelText = "\(Square.self) \(id + 1) - from nobody yet"
+        self.isWinner = false
     }
     
     public var description: String {

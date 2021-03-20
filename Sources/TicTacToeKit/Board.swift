@@ -9,8 +9,6 @@ public final class Board: ObservableObject {
     public private(set) var isStarted: Bool
     @Published
     public private(set) var winner: Square.OccupiedBy
-    @Published
-    public private(set) var winningSquares: [Square]
     
     public let squares: [[Square]]
     let flatSquares: [Square]
@@ -39,7 +37,6 @@ public final class Board: ObservableObject {
         self.isStarted = false
         self.winner = .nobody
         self.flatSquares = squares.flatMap { $0 }
-        self.winningSquares = []
     }
     
     /// Allows to play against AI
@@ -92,6 +89,7 @@ public final class Board: ObservableObject {
             }
         }
         checkGameStatus()
+        flatSquares.forEach { $0.isWinner = false }
     }
     
     // MARK: - Error
@@ -130,7 +128,10 @@ public final class Board: ObservableObject {
                 if flatSquares[wins[i][0]].occupiedBy == candidate,
                    flatSquares[wins[i][1]].occupiedBy == candidate,
                    flatSquares[wins[i][2]].occupiedBy == candidate {
-                   return candidate
+                    flatSquares[wins[i][0]].isWinner = true
+                    flatSquares[wins[i][1]].isWinner = true
+                    flatSquares[wins[i][2]].isWinner = true
+                    return candidate
                 }
             }
         }
@@ -138,7 +139,6 @@ public final class Board: ObservableObject {
     }
     
     private func checkGameStatus() {
-        let flatSquares: [Square] = squares.flatMap { $0 }
         isGameover = flatSquares.filter { $0.occupiedBy == .nobody }.count == 0
         // id is ignored in equality
         isStarted = flatSquares.contains(.init(.home, id: 0)) || flatSquares.contains(.init(.visitor, id: 0))
