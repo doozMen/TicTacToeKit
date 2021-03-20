@@ -29,9 +29,9 @@ public final class Board: ObservableObject {
     public init(mode: Mode = .multiplayer) {
         self.mode = mode
         self.squares = [
-            [.init(.nobody), .init(.nobody), .init(.nobody)],
-            [.init(.nobody), .init(.nobody), .init(.nobody)],
-            [.init(.nobody), .init(.nobody), .init(.nobody)],
+            [.init(.nobody, id: 0), .init(.nobody, id: 1), .init(.nobody, id: 2)],
+            [.init(.nobody, id: 3), .init(.nobody, id: 4), .init(.nobody, id: 5)],
+            [.init(.nobody, id: 6), .init(.nobody, id: 7), .init(.nobody, id: 8)],
         ]
         self.isGameover = false
         self.isStarted = false
@@ -137,7 +137,8 @@ public final class Board: ObservableObject {
     private func checkGameStatus() {
         let flatSquares: [Square] = squares.flatMap { $0 }
         isGameover = flatSquares.filter { $0.occupiedBy == .nobody }.count == 0
-        isStarted = flatSquares.contains(.init(.home)) || flatSquares.contains(.init(.visitor))
+        // id is ignored in equality
+        isStarted = flatSquares.contains(.init(.home, id: 0)) || flatSquares.contains(.init(.visitor, id: 0))
         winner = checkForWinner()
     }
 }
