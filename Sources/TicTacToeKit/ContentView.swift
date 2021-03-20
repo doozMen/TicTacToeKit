@@ -19,6 +19,8 @@ public struct ContentView: View {
                 Button("Reset") {
                     boardViewModel.board.resetGame()
                 }
+                .accessibility(label: Text("Reset Button"))
+                .accessibilityIdentifier("Reset")
                 .padding()
             }.padding()
             Divider()
@@ -52,10 +54,12 @@ public struct ContentView: View {
 // MARK: - Private
 
 extension ContentView {
-    private func createSquare(item: Int, section: Int) -> SquareView {
-        return SquareView(square: boardViewModel.board.squares[section][item]) {
+    private func createSquare(item: Int, section: Int) -> some View {
+        let square = boardViewModel.board.squares[section][item]
+        let view = SquareView(square: square) {
             do { try boardViewModel.board.occupy(at: .init(item: item, section: section), with: .home) } catch { print(error) }
         }
+        return view
     }
 
 }

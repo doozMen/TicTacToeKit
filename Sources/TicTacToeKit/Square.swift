@@ -8,7 +8,7 @@ public final class Square: Equatable, CustomStringConvertible, ObservableObject 
     
     let id: Int
     lazy var accesibilityIdentifier = "\(Square.self)-\(id)"
-    lazy var accesibilityLabelText = "\(Square.self) \(id + 1)"
+    @Published var accesibilityLabelText: String
     
     @Published
     var occupiedBy: OccupiedBy {
@@ -17,12 +17,15 @@ public final class Square: Equatable, CustomStringConvertible, ObservableObject 
                 case .nobody:
                     text = Square.empty
                     color = .gray
+                    accesibilityLabelText = "\(Square.self) \(id + 1) - from nobody yet"
                 case .visitor:
                     text = "\(Square.spacing)v\(Square.spacing)"
                     color = .green
+                    accesibilityLabelText = "\(Square.self) \(id + 1) - from AI"
                 case .home:
                     text = "\(Square.spacing)h\(Square.spacing)"
                     color = .blue
+                    accesibilityLabelText = "\(Square.self) \(id + 1) - from you"
             }
         }
     }
@@ -37,6 +40,7 @@ public final class Square: Equatable, CustomStringConvertible, ObservableObject 
         self.text = Square.empty
         self.color = .gray
         self.id = id
+        self.accesibilityLabelText = "\(Square.self) \(id + 1) - from nobody yet"
     }
     
     public var description: String {
