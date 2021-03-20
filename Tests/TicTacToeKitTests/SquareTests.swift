@@ -11,7 +11,7 @@ class SquareTests: XCTestCase {
     
     func test_square_accessibility() {
         XCTAssertEqual(square.accesibilityIdentifier, "Square-0")
-        XCTAssertEqual(square.accesibilityLabelText, "Square 1")
+        XCTAssertEqual(square.accesibilityLabelText, "Square 1 - from nobody yet")
     }
     
     func test_init() {
