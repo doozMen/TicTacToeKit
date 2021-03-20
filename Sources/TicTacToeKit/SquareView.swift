@@ -35,12 +35,12 @@ public struct SquareView: View {
                     self.scale = 1
                     return
                 }
-                self.scale = 1.5
+                self.scale = 1.15
             })
             .accessibilityIdentifier(square.accesibilityIdentifier)
             .accessibility(label: Text(square.accesibilityLabelText))
             .scaleEffect(scale)
-            .animation(.spring())
+            .animation(.spring(response: 0.75, dampingFraction:  0.2, blendDuration: 0.7))
     }
 }
 
